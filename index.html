@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Unicode to Bijoy & Bijoy to Unicode Converter | UniTech Computer</title>
 
-    <meta name="description" content="Convert text seamlessly between Unicode and Bijoy fonts with UniTech Computer's Unicode to Bijoy & Bijoy to Unicode Converter. Enhance typing versatility across Bengali platforms!">
-    
+    <meta name="description"
+        content="Convert text seamlessly between Unicode and Bijoy fonts with UniTech Computer's Unicode to Bijoy & Bijoy to Unicode Converter. Enhance typing versatility across Bengali platforms!">
+
     <!-- Link to the external CSS file -->
     <link rel="stylesheet" href="./styles.css">
 
@@ -74,7 +76,8 @@
 
         /* Push content down to avoid being hidden behind fixed header */
         .content {
-            padding-top: 100px; /* Adjust based on header height */
+            padding-top: 100px;
+            /* Adjust based on header height */
             display: flex;
         }
 
@@ -85,9 +88,11 @@
             background-color: #333;
             color: #fff;
             padding-top: 20px;
-            height: calc(100vh - 0px); /* Adjusted for fixed header height */
+            height: calc(100vh - 0px);
+            /* Adjusted for fixed header height */
             position: fixed;
-            top: 0; /* Position sidebar below header */
+            top: 0;
+            /* Position sidebar below header */
             left: 0;
             z-index: 1100;
         }
@@ -119,7 +124,8 @@
 
         /* Main Container Styles */
         .container {
-            margin-left: 100px; /* Adjust based on sidebar width */
+            margin-left: 100px;
+            /* Adjust based on sidebar width */
             padding: 30px;
             flex: 1;
         }
@@ -188,6 +194,7 @@
     </style>
 
 </head>
+
 <body>
 
     <!-- Custom Main Header Section -->
@@ -200,7 +207,9 @@
         </div>
 
         <div class="marquee-container">
-            <div class="marquee-text"> <marquee direction="left" scrollamount="5"> বিজয় টু ইউনিকোড  |  ইউনিকোড টু বিজয়  |  কনভার্টর </marquee></div>
+            <div class="marquee-text">
+                <marquee direction="left" scrollamount="5"> বিজয় টু ইউনিকোড | ইউনিকোড টু বিজয় | কনভার্টর </marquee>
+            </div>
         </div>
 
 
@@ -233,214 +242,220 @@
             </ul>
         </div>
 
-    <!-- Main Content -->
-    <div class="voice">
-        <!-- Voice Typing Button -->
-        <div class="voice-typing-container">
-            <button class="voice-typing-button" onclick="toggleVoiceTyping()">Click Here To Voice Typing</button>
-            <span class="mic-icon">🎤</span>
-            
-            <!-- Error message container -->
-            <div id="error-container" style="display:none; color:red; text-align:center; margin-top:10px;"></div>
-        </div>
+        <!-- Main Content -->
+        <div class="voice">
+            <!-- Voice Typing Button -->
+            <div class="voice-typing-container">
+                <button class="voice-typing-button" onclick="toggleVoiceTyping()">Click Here To Voice Typing</button>
+                <span class="mic-icon">🎤</span>
 
-        <div class="voice-typing-box" id="voiceTypingBox" style="display: none;">
-            <textarea id="voiceTypingText" placeholder="Start speaking..."></textarea>
-            <button class="close-button" onclick="toggleVoiceTyping()">✖</button>
-        </div>
-
-    <!-- Main container for the converter -->
-    <div class="container">
-        <!-- Input area for Unicode text -->
-        <div class="box">
-            <h2>ইউনিকোড</h2>
-            <textarea id="unicodeText" placeholder="ইউনিকোড থেকে বিজয়ে লেখা কনভার্ট করতে চাইলে এখানে লিখুন..."></textarea>
-            <button class="copy-btn" onclick="copyToClipboard('unicodeText', this)">
-                <i class="fas fa-copy"></i> Copy Text
-            </button>
-        </div>
-
-        <!-- Buttons and Success Message area -->
-        <div class="center-box">
-            <!-- Success message area utc -->
-            <div id="success-box" class="success-box"></div>
-
-            <!-- Buttons for converting and clearing -->
-            <div class="buttons">
-                <button class="btn" onclick="convertUnicodeToVijay()">
-                    <span class="button-text">ইউনিকোড টু বিজয়</span> <span class="arrow-right">➡</span>
-                </button>
-                <button class="btn" onclick="convertVijayToUnicode()">
-                    <span class="arrow-left">⬅</span> <span class="button-text">বিজয় টু ইউনিকোড</span>
-                </button>
-                <button class="btn switch-btn" onclick="clearText()">
-                    <span class="arrow-left">⬅</span> মুছে ফেলুন <span class="arrow-right">➡</span>
-                </button>
+                <!-- Error message container -->
+                <div id="error-container" style="display:none; color:red; text-align:center; margin-top:10px;"></div>
             </div>
-        </div>
 
-        <!-- Input area for Bijoy text -->
-        <div class="box">
-            <h2>বিজয়</h2>
-            <textarea id="vijayText" placeholder="বিজয় থেকে ইউনিকোডে লেখা কনভার্ট করতে চাইলে এখানে লিখুন..." spellcheck="false"></textarea>
-            <button class="copy-btn" onclick="copyToClipboard('vijayText', this)">
-                <i class="fas fa-copy"></i> Copy Text
-            </button>
-        </div>
-    </div>
+            <div class="voice-typing-box" id="voiceTypingBox" style="display: none;">
+                <textarea id="voiceTypingText" placeholder="Start speaking..."></textarea>
+                <button class="close-button" onclick="toggleVoiceTyping()">✖</button>
+            </div>
 
-    <!-- Main conversion and utility scripts -->
-    <script>
-        // Function to copy text from a textarea to the clipboard using Clipboard API
-        async function copyToClipboard(elementId, button) {
-            const textarea = document.getElementById(elementId);
-            const text = textarea.value;
-        
-            try {
-                // Use the Clipboard API for copying
-                await navigator.clipboard.writeText(text);
-                console.log('Text copied:', text); // Debugging log
-        
-                // Change button text to "Copied!" with a checkmark icon
-                button.innerHTML = '<i class="fas fa-check"></i> Copied!';
-        
-                // Reset the button text after 2 seconds
-                setTimeout(() => {
-                    if (elementId === 'unicodeText') {
-                        button.innerHTML = '<i class="fas fa-copy"></i> Copy Text';
-                    } else if (elementId === 'vijayText') {
-                        button.innerHTML = '<i class="fas fa-copy"></i> Copy Text';
+            <!-- Main container for the converter -->
+            <section style="max-width: 1140px; margin: 0 auto;">
+                <div class="container">
+                    <!-- Input area for Unicode text -->
+                    <div class="box">
+                        <h2>ইউনিকোড</h2>
+                        <textarea id="unicodeText"
+                            placeholder="ইউনিকোড থেকে বিজয়ে লেখা কনভার্ট করতে চাইলে এখানে লিখুন..."></textarea>
+                        <button class="copy-btn" onclick="copyToClipboard('unicodeText', this)">
+                            <i class="fas fa-copy"></i> Copy Text
+                        </button>
+                    </div>
+
+                    <!-- Buttons and Success Message area -->
+                    <div class="center-box">
+                        <!-- Success message area utc -->
+                        <div id="success-box" class="success-box"></div>
+
+                        <!-- Buttons for converting and clearing -->
+                        <div class="buttons">
+                            <button class="btn" onclick="convertUnicodeToVijay()">
+                                <span class="button-text">ইউনিকোড টু বিজয়</span> <span class="arrow-right">➡</span>
+                            </button>
+                            <button class="btn" onclick="convertVijayToUnicode()">
+                                <span class="arrow-left">⬅</span> <span class="button-text">বিজয় টু ইউনিকোড</span>
+                            </button>
+                            <button class="btn switch-btn" onclick="clearText()">
+                                <span class="arrow-left">⬅</span> মুছে ফেলুন <span class="arrow-right">➡</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Input area for Bijoy text -->
+                    <div class="box">
+                        <h2>বিজয়</h2>
+                        <textarea id="vijayText"
+                            placeholder="বিজয় থেকে ইউনিকোডে লেখা কনভার্ট করতে চাইলে এখানে লিখুন..."
+                            spellcheck="false"></textarea>
+                        <button class="copy-btn" onclick="copyToClipboard('vijayText', this)">
+                            <i class="fas fa-copy"></i> Copy Text
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Main conversion and utility scripts -->
+            <script>
+                // Function to copy text from a textarea to the clipboard using Clipboard API
+                async function copyToClipboard(elementId, button) {
+                    const textarea = document.getElementById(elementId);
+                    const text = textarea.value;
+
+                    try {
+                        // Use the Clipboard API for copying
+                        await navigator.clipboard.writeText(text);
+                        console.log('Text copied:', text); // Debugging log
+
+                        // Change button text to "Copied!" with a checkmark icon
+                        button.innerHTML = '<i class="fas fa-check"></i> Copied!';
+
+                        // Reset the button text after 2 seconds
+                        setTimeout(() => {
+                            if (elementId === 'unicodeText') {
+                                button.innerHTML = '<i class="fas fa-copy"></i> Copy Text';
+                            } else if (elementId === 'vijayText') {
+                                button.innerHTML = '<i class="fas fa-copy"></i> Copy Text';
+                            }
+                        }, 2000);
+
+                    } catch (err) {
+                        console.error('Failed to copy: ', err);
+                        alert('Failed to copy text');
                     }
-                }, 2000);
-        
-            } catch (err) {
-                console.error('Failed to copy: ', err);
-                alert('Failed to copy text');
-            }
-        }
-        
-        // Function to simulate typing animation
-        function typeText(element, text, callback) {
-            element.value = "";  // Clear the textarea initially
-        
-            let index = 0;
-            const typingSpeed = 5;  // Fast typing speed
-        
-            function type() {
-                if (index < text.length) {
-                    element.value += text.charAt(index);  // Add one character at a time
-                    index++;
-                    setTimeout(type, typingSpeed);  // Call the function again after the typing speed
-                } else if (typeof callback === 'function') {
-                    callback();  // Call the callback function after typing completes
                 }
-            }
-            type();  // Start typing
-        }
-        
-        // Unicode to Bijoy conversion with arrow animation and success message
-        function convertUnicodeToVijay() {
-            var btn = document.querySelector('button[onclick="convertUnicodeToVijay()"]');
-            var arrow = btn.querySelector('.arrow-right');
-            var unicodeText = document.getElementById("unicodeText").value;
-            var vijayTextArea = document.getElementById("vijayText");
-        
-            // Start arrow animation (slide right)
-            arrow.classList.add('animate-right');
-        
-            // Perform conversion after the animation completes (0.5s delay)
-            setTimeout(function() {
-                var convertedText = ConvertToASCII("bijoy", unicodeText);
-                
-                // Apply a specific fix for the issue with "গ্রাম" being incorrectly converted
-                convertedText = convertedText.replace(/MÖ©vg/g, "MÖvg");
 
-                // Use the typing animation and wait for it to finish before showing the success message
-                typeText(vijayTextArea, convertedText, function() {
-                    // Show success message after the typing animation completes
-                    showSuccessMessage('Converted!');
+                // Function to simulate typing animation
+                function typeText(element, text, callback) {
+                    element.value = "";  // Clear the textarea initially
+
+                    let index = 0;
+                    const typingSpeed = 5;  // Fast typing speed
+
+                    function type() {
+                        if (index < text.length) {
+                            element.value += text.charAt(index);  // Add one character at a time
+                            index++;
+                            setTimeout(type, typingSpeed);  // Call the function again after the typing speed
+                        } else if (typeof callback === 'function') {
+                            callback();  // Call the callback function after typing completes
+                        }
+                    }
+                    type();  // Start typing
+                }
+
+                // Unicode to Bijoy conversion with arrow animation and success message
+                function convertUnicodeToVijay() {
+                    var btn = document.querySelector('button[onclick="convertUnicodeToVijay()"]');
+                    var arrow = btn.querySelector('.arrow-right');
+                    var unicodeText = document.getElementById("unicodeText").value;
+                    var vijayTextArea = document.getElementById("vijayText");
+
+                    // Start arrow animation (slide right)
+                    arrow.classList.add('animate-right');
+
+                    // Perform conversion after the animation completes (0.5s delay)
+                    setTimeout(function () {
+                        var convertedText = ConvertToASCII("bijoy", unicodeText);
+
+                        // Apply a specific fix for the issue with "গ্রাম" being incorrectly converted
+                        convertedText = convertedText.replace(/MÖ©vg/g, "MÖvg");
+
+                        // Use the typing animation and wait for it to finish before showing the success message
+                        typeText(vijayTextArea, convertedText, function () {
+                            // Show success message after the typing animation completes
+                            showSuccessMessage('Converted!');
+                        });
+
+                        // Remove the arrow animation after it's done
+                        arrow.classList.remove('animate-right');
+                    }, 500);
+                }
+
+                // Bijoy to Unicode conversion with arrow animation and success message
+                function convertVijayToUnicode() {
+                    var btn = document.querySelector('button[onclick="convertVijayToUnicode()"]');
+                    var arrow = btn.querySelector('.arrow-left');
+                    var vijayText = document.getElementById("vijayText").value;
+                    var unicodeTextArea = document.getElementById("unicodeText");
+
+                    // Start arrow animation (slide left)
+                    arrow.classList.add('animate-left');
+
+                    // Perform conversion after the animation completes (0.5s delay)
+                    setTimeout(function () {
+                        var convertedText = ConvertToUnicode("bijoy", vijayText);
+                        // Use the typing animation and wait for it to finish before showing the success message
+                        typeText(unicodeTextArea, convertedText, function () {
+                            // Show success message after the typing animation completes
+                            showSuccessMessage('Converted!');
+                        });
+
+                        // Remove the arrow animation after it's done
+                        arrow.classList.remove('animate-left');
+                    }, 500);
+                }
+
+                // Function to display success message and keep it visible
+                function showSuccessMessage(message) {
+                    var successBox = document.getElementById("success-box");
+                    successBox.innerHTML = message;  // No tick mark here, as it's handled in CSS
+                    successBox.classList.add('show-success');  // Display the success message
+                }
+
+                // Clear the success message when the user starts typing again
+                document.getElementById("unicodeText").addEventListener("input", function () {
+                    document.getElementById("success-box").classList.remove('show-success');
                 });
-        
-                // Remove the arrow animation after it's done
-                arrow.classList.remove('animate-right');
-            }, 500);
-        }
-        
-        // Bijoy to Unicode conversion with arrow animation and success message
-        function convertVijayToUnicode() {
-            var btn = document.querySelector('button[onclick="convertVijayToUnicode()"]');
-            var arrow = btn.querySelector('.arrow-left');
-            var vijayText = document.getElementById("vijayText").value;
-            var unicodeTextArea = document.getElementById("unicodeText");
-        
-            // Start arrow animation (slide left)
-            arrow.classList.add('animate-left');
-        
-            // Perform conversion after the animation completes (0.5s delay)
-            setTimeout(function() {
-                var convertedText = ConvertToUnicode("bijoy", vijayText);
-                // Use the typing animation and wait for it to finish before showing the success message
-                typeText(unicodeTextArea, convertedText, function() {
-                    // Show success message after the typing animation completes
-                    showSuccessMessage('Converted!');
+                document.getElementById("vijayText").addEventListener("input", function () {
+                    document.getElementById("success-box").classList.remove('show-success');
                 });
-        
-                // Remove the arrow animation after it's done
-                arrow.classList.remove('animate-left');
-            }, 500);
-        }
-        
-        // Function to display success message and keep it visible
-        function showSuccessMessage(message) {
-            var successBox = document.getElementById("success-box");
-            successBox.innerHTML = message;  // No tick mark here, as it's handled in CSS
-            successBox.classList.add('show-success');  // Display the success message
-        }
-        
-        // Clear the success message when the user starts typing again
-        document.getElementById("unicodeText").addEventListener("input", function() {
-            document.getElementById("success-box").classList.remove('show-success');
-        });
-        document.getElementById("vijayText").addEventListener("input", function() {
-            document.getElementById("success-box").classList.remove('show-success');
-        });
-        
-        // Function to gradually clear text like a backspace effect
-        function clearText() {
-            var unicodeTextArea = document.getElementById("unicodeText");
-            var vijayTextArea = document.getElementById("vijayText");
-            var successBox = document.getElementById("success-box");
-        
-            // Hide success message and tick mark
-            successBox.classList.remove('show-success');
-        
-            // Gradually delete text in both text areas
-            function deleteText(element) {
-                var currentText = element.value;
-                if (currentText.length > 0) {
-                    // Remove one character at a time
-                    element.value = currentText.substring(0, currentText.length - 1);
+
+                // Function to gradually clear text like a backspace effect
+                function clearText() {
+                    var unicodeTextArea = document.getElementById("unicodeText");
+                    var vijayTextArea = document.getElementById("vijayText");
+                    var successBox = document.getElementById("success-box");
+
+                    // Hide success message and tick mark
+                    successBox.classList.remove('show-success');
+
+                    // Gradually delete text in both text areas
+                    function deleteText(element) {
+                        var currentText = element.value;
+                        if (currentText.length > 0) {
+                            // Remove one character at a time
+                            element.value = currentText.substring(0, currentText.length - 1);
+                        }
+                    }
+
+                    // Use setInterval to simulate the backspace effect for Unicode text
+                    var unicodeInterval = setInterval(function () {
+                        deleteText(unicodeTextArea);
+                        if (unicodeTextArea.value.length === 0) {
+                            clearInterval(unicodeInterval); // Stop interval when the text area is empty
+                        }
+                    }, 2); // Adjust speed as needed (100ms delay between each "backspace")
+
+                    // Use setInterval to simulate the backspace effect for Bijoy text
+                    var vijayInterval = setInterval(function () {
+                        deleteText(vijayTextArea);
+                        if (vijayTextArea.value.length === 0) {
+                            clearInterval(vijayInterval); // Stop interval when the text area is empty
+                        }
+                    }, 2); // Adjust speed as needed
                 }
-            }
-        
-            // Use setInterval to simulate the backspace effect for Unicode text
-            var unicodeInterval = setInterval(function () {
-                deleteText(unicodeTextArea);
-                if (unicodeTextArea.value.length === 0) {
-                    clearInterval(unicodeInterval); // Stop interval when the text area is empty
-                }
-            }, 2); // Adjust speed as needed (100ms delay between each "backspace")
-        
-            // Use setInterval to simulate the backspace effect for Bijoy text
-            var vijayInterval = setInterval(function () {
-                deleteText(vijayTextArea);
-                if (vijayTextArea.value.length === 0) {
-                    clearInterval(vijayInterval); // Stop interval when the text area is empty
-                }
-            }, 2); // Adjust speed as needed
-        }
-    </script>
+            </script>
 
 
 </body>
+
 </html>
