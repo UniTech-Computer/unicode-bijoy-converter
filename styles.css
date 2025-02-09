@@ -1,0 +1,389 @@
+/* Basic CSS for styling the page layout */
+
+
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        width: 95%;
+    }
+    .box {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+    .center-box {
+        width: 100%;
+        margin: 20px 0;
+    }
+    /* Add closing brace here */
+}
+
+@media (min-width: 1024px) {
+    .btn {
+        font-size: 14px;
+    }
+}
+
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #1D2630;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Full-screen height */
+}
+
+
+.container {
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-top: -25px;
+}
+
+
+/* Marquee Container */
+.marquee-container {
+    position: fixed;
+    width: 56%;
+    overflow: hidden;
+    color: white;
+    font-weight: bold;
+    padding: 10px 0;
+    text-align: center;
+    font-size: 16px;
+    margin-top: 70px; /* Adjust to position below the header */
+    margin-left: 120px;
+    z-index: 999; /* Ensures it appears above other content */
+  }
+  
+  .marquee-text{
+    animation: marquee 1s;
+  }
+  
+  /* Sidebar Styling */
+  .sidebar {
+    height: 100%;
+    width: 0 auto;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #333;
+    color: #fff;
+    padding-top: 20px;
+  }
+  
+  .sidebar h2 {
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .sidebar ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .sidebar ul li {
+    padding: 10px 0;
+  }
+  
+  .sidebar ul li a {
+    display: block;
+    color: #fff;
+    text-decoration: none;
+    padding: 10px 20px;
+  }
+  
+  .sidebar ul li a:hover {
+    background-color: #555;
+  }
+
+
+.box {
+    min-width: 350px;
+    padding: 20px;
+    background-color: #323437;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    position: relative;
+    border: 1px solid #ccc;
+}
+
+.box h2 {
+        color: #ccc;
+}
+
+.center-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 10%;
+    margin: 25px 50px 5px 50px;
+}
+
+#success-box {
+    height: 50px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    color: green;
+    text-align: center;
+}
+
+textarea#unicodeText {
+    width: 100%;
+    height: 150px;
+    font-size: 12px;
+    border-radius: 5px;
+    background-color: #C3BDBD;
+    border: 1px solid #ddd;
+    text-align: left;
+    font-weight: bold;
+}
+
+/* Placeholder style for Unicode textarea */
+textarea#unicodeText::placeholder {
+    font-size: 13px;
+    font-weight: bold;
+    font-family: Arial, sans-serif;
+    color: #666; /* Optional */
+}
+
+textarea#vijayText {
+    font-family: 'SutonnyMJ', 'BijoyClassic', Arial, sans-serif;
+    width: 100%;
+    height: 150px;
+    font-size: 16.5px;
+    border-radius: 5px;
+    background-color: #C3BDBD;
+    border: 1px solid #ddd;
+    text-align: left;
+    font-weight: bold;
+    spellcheck: false;
+}
+
+/* Placeholder style for Vijay textarea */
+textarea#vijayText::placeholder {
+    font-family: 'SutonnyMJ', 'BijoyClassic', Arial, sans-serif;
+    font-size: 13px;
+    font-weight: bold;
+    color: #666; /* Optional */
+}
+
+.buttons {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin: 0 20px;
+}
+
+.btn {
+    background-color: #2d572c;
+    color: #fff;
+    border: .5px solid black;
+    padding: 8px 15px;
+    font-size: 12px;
+    cursor: pointer;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 150px;
+    transition: all 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #3e7b3b;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+}
+
+.btn .arrow-left,
+.btn .arrow-right {
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.switch-btn {
+    background-color: #ddd;
+    color: #333;
+}
+
+.copy-btn {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 10px;
+    background-color: #2d572c;
+    color: white;
+    border: none;
+    padding: 5px;
+    cursor: pointer;
+    border-radius: 5px;
+    display: inline-flex;
+    align-items: center;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    padding: 8px 12px;
+}
+
+.copy-btn i {
+    margin-right: 5px;
+}
+
+.btn:focus,
+.copy-btn:focus {
+    outline: 2px solid #0095FF; /* Or any color that provides good contrast */
+    outline-offset: 2px;
+}
+
+
+.show-success {
+    display: inline-block;
+    animation: fadeIn 0.5s ease forwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Typing animation */
+@keyframes typing {
+    from {
+        width: 0;
+    }
+    to {
+        width: 100%;
+    }
+}
+
+.text-typing {
+    border-right: 2px solid #333; /* Simulate a blinking cursor */
+    white-space: nowrap;
+    overflow: hidden;
+    display: inline-block;
+    animation: typing 2s steps(30, end), blink 0.75s step-end infinite;
+    width: 0; /* Initially hidden */
+}
+
+/* Blinking cursor effect */
+@keyframes blink {
+    from, to {
+        border-color: transparent;
+    }
+    50% {
+        border-color: #333;
+    }
+}
+
+/* Arrow sliding animation */
+@keyframes slideRight {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(20px); /* Slide to the right */
+    }
+}
+
+@keyframes slideLeft {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-20px); /* Slide to the left */
+    }
+}
+
+/* Success message and tick mark */
+#success-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    color: green;
+    opacity: 0; /* Hidden by default */
+    transition: opacity 0.3s ease;
+}
+
+/* Show success message */
+.show-success {
+    opacity: 1;
+}
+
+/* Add tick mark next to success text */
+#success-box::before {
+    content: '✔';
+    margin-right: 10px;
+    color: green;
+}
+
+/* Button animation on click */
+.animate-right {
+    animation: slideRight 0.5s forwards;
+}
+
+.animate-left {
+    animation: slideLeft 0.5s forwards;
+}
+
+/* Media queries for responsiveness */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        width: 95%;
+    }
+    .box {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+    .center-box {
+        width: 100%;
+        margin: 20px 0;
+    }
+
+@media (min-width: 1024px) {
+    .btn {
+        font-size: 14px;
+        }
+    }
+
+    /* Adjust text area sizes and fonts for smaller devices */
+    textarea {
+        font-size: 14px;
+        height: 150px;
+        border-color: #2d572c;
+        outline: none; /* Remove the default outline */
+    }
+
+    .btn {
+        width: 100%;
+        font-size: 14px;
+        padding: 10px;
+    }
+
+    /* Adjust animation speed for smaller devices */
+    .animate-right, .animate-left {
+        animation-duration: 0.3s;
+    }
+}
+
+/* Style for active listening button */
+.voice-typing-button.active-listening {
+    background-color: #ff4d4d; /* Change to red or any color you prefer */
+}
